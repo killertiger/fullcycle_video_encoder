@@ -24,10 +24,10 @@ func NewDb() *Database {
 	return &Database{}
 }
 
-func NewDbTest() *Database {
-	dbInstance = NewDb()
+func NewDbTest() *gorm.DB {
+	dbInstance := NewDb()
 	dbInstance.Env = "test"
-	dbInstance.DbType = "sqlite3"
+	dbInstance.DbTypeTest = "sqlite3"
 	dbInstance.DsnTest = ":memory:"
 	dbInstance.AutoMigrateDb = true
 	dbInstance.Debug = true
@@ -38,7 +38,7 @@ func NewDbTest() *Database {
 		log.Fatalf("Test db error: %v", err)
 	}
 
-	return connection, nil
+	return connection
 }
 
 func (d *Database) Connect() (*gorm.DB, error) {
@@ -61,7 +61,7 @@ func (d *Database) Connect() (*gorm.DB, error) {
 
 	if d.AutoMigrateDb {
 		d.Db.AutoMigrate(&domain.Video{}, &domain.Job{})
-		d.Db.Model(domain.Job{}).AddForeignKey("video_id", "videos (id)", "CASCADE", "CASCADE")
+		// d.Db.Model(domain.Job{}).AddForeignKey("video_id", "videos(id)", "CASCADE", "CASCADE")
 	}
 
 	return d.Db, nil
