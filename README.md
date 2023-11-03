@@ -15,3 +15,8 @@ Run tests
 ```
 go test ./...
 ```
+
+
+Packages:
+github.com/jinzhu/gorm - ORM
+cloud.google.com/go/storage - Google Cloud Storage
