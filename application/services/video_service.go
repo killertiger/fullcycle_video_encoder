@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"os/exec"
 
 	"cloud.google.com/go/storage"
 	"github.com/killertiger/fullcycle_video_encoder/application/repositories"
@@ -59,4 +60,32 @@ func (v *VideoService) Download(bucketName string) error {
 	log.Printf("video %v has been stored", v.Video.ID)
 
 	return nil
+}
+
+func (v *VideoService) Fragment() error {
+	videoDir := os.Getenv("localStoragePath") + "/" + v.Video.ID
+
+	err := os.Mkdir(videoDir, os.ModePerm)
+	if err != nil {
+		return err
+	}
+
+	source := os.Getenv("localStoragePath") + "/" + v.Video.ID + ".mp4"
+	target := os.Getenv("localStoragePath") + "/" + v.Video.ID + ".frag"
+
+	cmd := exec.Command("mp4fragment", source, target)
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		return err
+	}
+
+	printOutput(output)
+
+	return nil
+}
+
+func printOutput(output []byte) {
+	if len(output) > 0 {
+		log.Printf("======> Output: %s\n", string(output))
+	}
 }

@@ -20,3 +20,20 @@ go test ./...
 Packages:
 github.com/jinzhu/gorm - ORM
 cloud.google.com/go/storage - Google Cloud Storage
+
+Requirement:
+Google Cloud Platform
+-> IAM & Admin
+  -> Service Account
+    -> Create a Service Account
+      -> Create a json Key on the Service Account
+      -> Download the key
+  -> IAM
+    -> Grant Access
+      -> Add principals - Set your Service Account name
+      -> Assign roles - Set Environment and Storage Object Administrator
+
+
+On your computer:
+-> Add the json key file the root folder of the project
+-> Rename it to bucket-credential.json
