@@ -13,8 +13,12 @@ go mod tidy
 
 Run tests
 ```
+go clean -testcache
 go test ./...
 ```
+
+Reference links:
+https://gobyexample.com/channels 
 
 
 Packages:
