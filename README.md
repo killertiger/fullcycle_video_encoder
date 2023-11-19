@@ -25,6 +25,7 @@ Packages:
 github.com/jinzhu/gorm - ORM
 cloud.google.com/go/storage - Google Cloud Storage
 github.com/joho/godotenv - Reads a .env file and add to the Environments Variables
+github.com/streadway/amqp - RabbitMQ package
 
 Requirement:
 Google Cloud Platform
