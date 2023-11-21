@@ -81,6 +81,11 @@ Executing the server
 go run framework/cmd/server/server.go
 ```
 
+Executing with race condition checker:
+```
+go run -race framework/cmd/server/server.go
+```
+
 Testing:
 Access RabbitMQ, queue videos: http://localhost:15672/#/queues/%2F/videos
 
@@ -95,3 +100,4 @@ Publish a message, example:
 Validating:
 1. On the GCP - Cloud storage, you should be able to see a new folder with the video
 2. On the RabbitMQ - videos-result, it should exist a new message on this queue
+
