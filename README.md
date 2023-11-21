@@ -58,7 +58,7 @@ On RabbitMQ
 
 Create an exchange:
 Name: dlx
-Type: direct
+Type: fanout
 
 Create two queues:
 Type: Classic
